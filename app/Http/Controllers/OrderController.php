@@ -30,6 +30,7 @@ class OrderController extends Controller
     }
 
     public function stats(){
+
     //////////////////////////////////////////////////////////////
     $lastOrderDate = Order::latest('created_at')->value('created_at');
     $startDate = Carbon::parse($lastOrderDate)->subDays(6)->startOfDay();
@@ -47,12 +48,14 @@ class OrderController extends Controller
     }
 
     public function stats_provider(Request $request){
-    
+
+    ////////////////////////////////////////////////
     $provider_id = $request->input('provider_id');
     $status = $request->input('status');
     $ordersproviders = Order::where('provider_id', $provider_id)->where('status', $status)->get();
+    ////////////////////////////////////////////////
     
-    return view('statistic_providers', compact('ordersproviders'));
+    return view('statisticproviders', compact('ordersproviders'));
 
     }
 }

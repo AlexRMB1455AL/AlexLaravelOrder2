@@ -9,10 +9,10 @@ Route::get('/welcome', function () {
 Route::get('/order', function () {
     return view('order');
 });
-Route::get('/statistic', function () {
-    return view('statistic');
-});
+// Route::get('/statistic', function () {
+//     return view('statistic');
+// });
 Route::post('/order', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/statistic', [OrderController::class, 'stats'])->name('orders.stats');
-Route::post('/statistic_providers', [OrderController::class, 'statsprovider'])->name('orders.statsprovider');
+Route::post('/statisticproviders', [OrderController::class, 'stats_provider'])->name('orders.statsprovider');
 Route::get('/order', [OrderController::class, 'show_provider'])->name('orders.showprovider');
