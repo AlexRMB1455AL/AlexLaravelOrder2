@@ -11,6 +11,8 @@ Route::get('/order', function () {
 });
 Route::get('/statistic', function () {
     return view('statistic');
-})->name('statistic_page');
+});
 Route::post('/order', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/statistic', [OrderController::class, 'stats'])->name('orders.stats');
+Route::post('/statistic_providers', [OrderController::class, 'statsprovider'])->name('orders.statsprovider');
+Route::get('/order', [OrderController::class, 'show_provider'])->name('orders.showprovider');

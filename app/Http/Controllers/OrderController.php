@@ -30,13 +30,29 @@ class OrderController extends Controller
     }
 
     public function stats(){
-    
+    //////////////////////////////////////////////////////////////
     $lastOrderDate = Order::latest('created_at')->value('created_at');
     $startDate = Carbon::parse($lastOrderDate)->subDays(6)->startOfDay();
+    $ordersevendays = Order::whereBetween('created_at', [$startDate, $lastOrderDate])->get()->where('status', 'confirmed');
+    //////////////////////////////////////////////////////////////
+    
+        return view('statistic', compact('ordersevendays'));
+    }
 
-    $orders7days = Order::whereBetween('created_at', [$startDate, $lastOrderDate])->get()->where('status', 'confirmed');
+    public function show_provider(){
+    
+    $providers = Order::select('provider_id')->distinct()->pluck('provider_id');
 
-    dd($orders7days);
+        return view('order', compact('providers'));
+    }
+
+    public function stats_provider(Request $request){
+    
+    $provider_id = $request->input('provider_id');
+    $status = $request->input('status');
+    $ordersproviders = Order::where('provider_id', $provider_id)->where('status', $status)->get();
+    
+    return view('statistic_providers', compact('ordersproviders'));
 
     }
 }

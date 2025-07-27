@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h4 class="mb-4">Статистика заказов за 7 последних дней</h4>
+    <h4 class="mb-4">Статистика по выполненным заказам</h4>
 
     <table class="table table-bordered table-striped">
         <thead class="table-secondary">
@@ -13,11 +13,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($ordersevendays as $ordersevenday)
+            @foreach ($ordersproviders as $ordersprovider)
             <tr>
-                <td>{{ $ordersevenday->provider_id }}</td>
-                <td>{{ $ordersevenday->earnings }}</td>
-                <td>{{ $ordersevenday->total_time }}</td>
+                <td>{{ $ordersprovider->provider_id }}</td>
+                <td>{{ $ordersprovider->earnings }}</td>
+                <td>{{ $ordersprovider->total_time }}</td>
             </tr>
             @endforeach
         </tbody>
