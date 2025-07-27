@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -10,4 +11,6 @@ Route::get('/order', function () {
 });
 Route::get('/statistic', function () {
     return view('statistic');
-});
+})->name('statistic_page');
+Route::post('/order', [OrderController::class, 'store'])->name('orders.store');
+Route::get('/statistic', [OrderController::class, 'stats'])->name('orders.stats');
